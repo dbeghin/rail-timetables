@@ -1,0 +1,31 @@
+
+# mongo-engine packages
+from mongoengine import Document, StringField, IntField, ListField
+
+
+class ConnectionsNorth(Document):
+    """
+    Template for a mongoengine document, which represents the connections to a given Gare du Nord platform
+    It also lists conflicts with trains coming from other Nord platforms
+    """
+
+    platform_nord = IntField(required=True)
+    direction = StringField()
+    lines_north = ListField()
+    platforms_central = ListField()
+    conflicts_north = ListField()
+    conflicts_south = ListField()
+
+
+class ConnectionsSouth(Document):
+    """
+    Template for a mongoengine document, which represents the connections to a given Gare du Midi platform
+    It also lists conflicts with trains coming from other Midi platforms
+    """
+
+    platform_midi = IntField(required=True)
+    direction = StringField()
+    platforms_central = ListField()
+    lines_south = ListField()
+    conflicts_north = ListField()
+    conflicts_south = ListField()

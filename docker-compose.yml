@@ -28,7 +28,7 @@ services:
       context: .
       dockerfile: Dockerfile_flask
     expose:
-      - "5000"
+      - "8888"
     environment: 
       MONGO_URL: mongodb://root:mypassword@mongo:27017/admin
     networks:
