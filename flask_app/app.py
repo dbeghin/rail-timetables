@@ -5,7 +5,7 @@ from flask_mongoengine import MongoEngine
 from flask_jwt_extended import JWTManager
 
 # local packages
-from flask_app.api.routes import create_routes
+from api.routes import create_routes
 
 # external packages
 import os

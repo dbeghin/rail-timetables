@@ -4,8 +4,8 @@ from flask_restful import Resource
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 # mongo-engine models
-from flask_app.models.connections import NodeConnections, Conflicts
-from flask_app.api.errors import forbidden
+from models.connections import NodeConnections, Conflicts
+from api.errors import forbidden
 
 
 class NodeConnectionsApi(Resource):
