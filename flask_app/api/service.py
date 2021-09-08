@@ -4,8 +4,8 @@ from flask_restful import Resource
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 # mongo-engine models
-from models.services import Services, ServiceFlows, Trains
-from api.errors import forbidden
+from flask_app.models.services import Services, ServiceFlows, Trains
+from flask_app.api.errors import forbidden
 
 
 #General information about services

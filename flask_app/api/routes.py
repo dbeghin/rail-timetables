@@ -2,10 +2,10 @@
 from flask_restful import Api
 
 # project resources
-from api.authentication import SignUpApi, LoginApi
-from api.productionplan import ProductionPlanApi
-from api.service import ServicesApi, ServiceApi, ServiceFlowsApi, ServiceFlowApi, TrainsApi, TrainApi
-from api.connection import NodeConnectionsApi, NodeConnectionApi, ConflictsApi, ConflictApi
+from flask_app.api.authentication import SignUpApi, LoginApi
+from flask_app.api.productionplan import ProductionPlanApi
+from flask_app.api.service import ServicesApi, ServiceApi, ServiceFlowsApi, ServiceFlowApi, TrainsApi, TrainApi
+from flask_app.api.connection import NodeConnectionsApi, NodeConnectionApi, ConflictsApi, ConflictApi
 
 
 def create_routes(api: Api):
