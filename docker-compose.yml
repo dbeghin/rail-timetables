@@ -11,8 +11,8 @@ services:
     networks:
       - apinet
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: mypassword
+      MONGO_INITDB_ROOT_USERNAME: DiegoTheAdmin
+      MONGO_INITDB_ROOT_PASSWORD: KLdNLhzNj5AWZ5KC3
     volumes:
       - mongo-volume:/data/db
   web:

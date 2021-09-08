@@ -6,8 +6,8 @@ RUN pip3 install Flask
 ENV FLASK_APP application
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
-EXPOSE 5000
+EXPOSE 8888
 WORKDIR /home/flaskapp
 COPY $PWD/flask_app /home/flaskapp
 RUN pip3 install -r requirements.txt
-CMD ["gunicorn","--bind","0.0.0.0:5000","wsgi:app"]
+CMD ["gunicorn","--bind","0.0.0.0:8888","wsgi:app"]
