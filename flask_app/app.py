@@ -3,6 +3,9 @@ from flask import Flask, app
 from flask_restful import Api
 from flask_mongoengine import MongoEngine
 from flask_jwt_extended import JWTManager
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
 
 # local packages
 from api.routes import create_routes
@@ -11,22 +14,7 @@ from api.routes import create_routes
 import os
 
 # default configuration
-#default_config = {'MONGODB_SETTINGS': {
-#                    'db': 'nord_midi',
-#                    'host': 'localhost',
-#                    'port': 27017
-#                  }
-#                  }
-
-default_config = {'MONGODB_SETTINGS': {
-                    'db': 'nord_midi',
-                    'host': 'localhost',
-                    'port': 27017,
-                    'username': 'DiegoTheAdmin',
-                    'password': 'KLdNLhzNj5AWZ5KC3',
-                    'authentication_source': 'admin'
-                    },
-                  'JWT_SECRET_KEY': 'changeThisKeyFirst'
+default_config = {'JWT_SECRET_KEY': '${JWT_SECRET_KEY_VAR}'
                   }
 
 

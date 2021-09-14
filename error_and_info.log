@@ -1,0 +1,5 @@
+WARNING:  * Debugger is active!
+INFO:  * Debugger PIN: 333-319-425
+INFO: 127.0.0.1 - - [14/Sep/2021 18:16:25] "[35m[1mPOST /authentication/signup HTTP/1.1[0m" 500 -
+INFO: 127.0.0.1 - - [14/Sep/2021 18:16:37] "[37mPOST /authentication/signup/ HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [14/Sep/2021 18:16:55] "[37mPOST /authentication/login/ HTTP/1.1[0m" 200 -

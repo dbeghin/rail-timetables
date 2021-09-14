@@ -5,6 +5,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 # mongo-engine models
 from models.connections import NodeConnections, Conflicts
+from models.users import Users
 from api.errors import forbidden
 
 
@@ -23,7 +24,7 @@ class NodeConnectionsApi(Resource):
         Authorization is required: Access(admin=true)
         :return: JSON object
         """
-        authorized: bool = NodeConnections.objects.get(id=get_jwt_identity()).access.admin
+        authorized: bool = Users.objects.get(id=get_jwt_identity()).access.admin
         authorized = True
         
         if authorized:
@@ -58,7 +59,7 @@ class NodeConnectionApi(Resource):
         Authorization is required: Access(admin=true)
         :return: JSON object
         """
-        authorized: bool = NodeConnections.objects.get(id=get_jwt_identity()).access.admin
+        authorized: bool = Users.objects.get(id=get_jwt_identity()).access.admin
 
         if authorized:
             output = NodeConnections.objects(connection_id=connection_id).delete()
@@ -70,13 +71,13 @@ class NodeConnectionApi(Resource):
 
 
 class ConflictsApi(Resource):
-    #@jwt_required()
+    @jwt_required()
     def get(self):
         output = Conflicts.objects()
         return jsonify({'result': output})
 
 
-    #@jwt_required()
+    @jwt_required()
     def post(self) -> Response:
         """
         POST response method for creating meal.
@@ -100,7 +101,7 @@ class ConflictApi(Resource):
     """
     Flask-resftul resource for returning db.ConnectionsNorth collection.
     """
-    #@jwt_required()
+    @jwt_required()
     def get(self, conflict_id: str) -> Response:
         """
         GET response method for single documents in meal collection.
@@ -110,7 +111,7 @@ class ConflictApi(Resource):
         return jsonify({'result': output})
 
 
-    #@jwt_required()
+    @jwt_required()
     def delete(self, conflict_id: str) -> Response:
         """
         DELETE response method for deleting single meal.

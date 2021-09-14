@@ -5,18 +5,19 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 # mongo-engine models
 from models.services import Services, ServiceFlows, Trains
+from models.users import Users
 from api.errors import forbidden
 
 
 #General information about services
 class ServicesApi(Resource):
-    #@jwt_required()
+    @jwt_required()
     def get(self):
         output = Services.objects()
         return jsonify({'result': output})
 
 
-    #@jwt_required()
+    @jwt_required()
     def post(self) -> Response:
         """
         POST response method for creating meal.
@@ -24,7 +25,7 @@ class ServicesApi(Resource):
         Authorization is required: Access(admin=true)
         :return: JSON object
         """
-        authorized: bool = Services.objects.get(id=get_jwt_identity()).access.admin
+        authorized: bool = Users.objects.get(id=get_jwt_identity()).access.admin
 
         if authorized:
             data = request.get_json()
@@ -48,7 +49,7 @@ class ServiceApi(Resource):
     >>> api = Api(app=app)
     >>> api.add_resource(MealApi, '/meal/<meal_id>')
     """
-    #@jwt_required()
+    @jwt_required()
     def get(self, service_name: str) -> Response:
         """
         GET response method for single documents in meal collection.
@@ -57,7 +58,7 @@ class ServiceApi(Resource):
         output = Services.objects.get(service=service_name)
         return jsonify({'result': output})
 
-    #@jwt_required()
+    @jwt_required()
     def put(self, service_name: str) -> Response:
         """
         PUT response method for updating a meal.
@@ -65,7 +66,7 @@ class ServiceApi(Resource):
         Authorization is required: Access(admin=true)
         :return: JSON object
         """
-        authorized: bool = Services.objects.get(id=get_jwt_identity()).access.admin
+        authorized: bool = Users.objects.get(id=get_jwt_identity()).access.admin
 
         if authorized:
             data = request.get_json()
@@ -76,7 +77,7 @@ class ServiceApi(Resource):
             return forbidden()
     
 
-    #@jwt_required()
+    @jwt_required()
     def delete(self, service_name: str) -> Response:
         """
         DELETE response method for deleting single meal.
@@ -85,7 +86,7 @@ class ServiceApi(Resource):
         :return: JSON object
         """
 
-        authorized: bool = Services.objects.get(id=get_jwt_identity()).access.admin
+        authorized: bool = Users.objects.get(id=get_jwt_identity()).access.admin
 
         if authorized:
             output = Services.objects(service=service_name).delete()
@@ -98,13 +99,13 @@ class ServiceApi(Resource):
 
 #Service in one specific direction: what are the platforms used?
 class ServiceFlowsApi(Resource):
-    #@jwt_required()
+    @jwt_required()
     def get(self):
         output = ServiceFlows.objects()
         return jsonify({'result': output})
 
 
-    #@jwt_required()
+    @jwt_required()
     def post(self) -> Response:
         """
         POST response method for creating meal.
@@ -137,7 +138,7 @@ class ServiceFlowApi(Resource):
     >>> api = Api(app=app)
     >>> api.add_resource(MealApi, '/meal/<meal_id>')
     """
-    #@jwt_required()
+    @jwt_required()
     def get(self, service_name: str, direction: str) -> Response:
         """
         GET response method for single documents in meal collection.
@@ -146,7 +147,7 @@ class ServiceFlowApi(Resource):
         output = ServiceFlows.objects.get(service=service_name, direction=direction)
         return jsonify({'result': output})
 
-    #@jwt_required()
+    @jwt_required()
     def put(self, service_name: str, direction: str) -> Response:
         """
         PUT response method for updating a meal.
@@ -164,7 +165,7 @@ class ServiceFlowApi(Resource):
             return forbidden()
     
 
-    #@jwt_required()
+    @jwt_required()
     def delete(self, service_name: str, direction: str) -> Response:
         """
         DELETE response method for deleting single meal.
@@ -185,13 +186,13 @@ class ServiceFlowApi(Resource):
     
 #Trains are specific instances of a directional service
 class TrainsApi(Resource):
-    #@jwt_required()
+    @jwt_required()
     def get(self):
         output = Trains.objects()
         return jsonify({'result': output})
 
 
-    #@jwt_required()
+    @jwt_required()
     def post(self) -> Response:
         """
         POST response method for creating meal.
@@ -224,7 +225,7 @@ class TrainApi(Resource):
     >>> api = Api(app=app)
     >>> api.add_resource(MealApi, '/meal/<meal_id>')
     """
-    #@jwt_required()
+    @jwt_required()
     def get(self, train_number: int) -> Response:
         """
         GET response method for single documents in meal collection.
@@ -233,7 +234,7 @@ class TrainApi(Resource):
         output = Trains.objects.get(train_number=train_number)
         return jsonify({'result': output})
 
-    #@jwt_required()
+    @jwt_required()
     def put(self, train_number: int) -> Response:
         """
         PUT response method for updating a meal.
@@ -251,7 +252,7 @@ class TrainApi(Resource):
             return forbidden()
     
 
-    #@jwt_required()
+    @jwt_required()
     def delete(self, train_number: int) -> Response:
         """
         DELETE response method for deleting single meal.

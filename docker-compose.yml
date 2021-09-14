@@ -11,8 +11,8 @@ services:
     networks:
       - apinet
     environment:
-      MONGO_INITDB_ROOT_USERNAME: DiegoTheAdmin
-      MONGO_INITDB_ROOT_PASSWORD: KLdNLhzNj5AWZ5KC3
+      MONGO_INITDB_ROOT_USERNAME: $MONGO_INITDB_ROOT_USERNAME_VAR
+      MONGO_INITDB_ROOT_PASSWORD: $MONGO_INITDB_ROOT_PASSWORD_VAR
     volumes:
       - mongo-volume:/data/db
   web:
@@ -27,10 +27,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_flask
+    ports:
+      - '8888:8888'
     expose:
       - "8888"
     environment: 
-      MONGO_URL: mongodb://root:mypassword@mongo:27017/admin
+      MONGODB_URI: $MONGODB_URI_VAR
     networks:
       - apinet
 

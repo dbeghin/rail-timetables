@@ -1,5 +1,6 @@
 WARNING:  * Debugger is active!
-INFO:  * Debugger PIN: 369-852-379
-INFO: 127.0.0.1 - - [07/Sep/2021 14:14:32] "[37mGET /service/StNiklaas-Binche HTTP/1.1[0m" 200 -
-INFO: 127.0.0.1 - - [07/Sep/2021 14:14:43] "[32mGET /service HTTP/1.1[0m" 308 -
-INFO: 127.0.0.1 - - [07/Sep/2021 14:14:43] "[37mGET /service/ HTTP/1.1[0m" 200 -
+INFO:  * Debugger PIN: 333-319-425
+INFO: 127.0.0.1 - - [13/Sep/2021 14:04:34] "[37mGET /service/ HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [13/Sep/2021 14:04:53] "[37mGET /connection/ HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [13/Sep/2021 14:05:39] "[37mPOST /connection/ HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [13/Sep/2021 14:05:47] "[37mGET /connection/ HTTP/1.1[0m" 200 -

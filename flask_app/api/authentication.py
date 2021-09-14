@@ -30,10 +30,17 @@ class SignUpApi(Resource):
         POST response method for creating user.
         :return: JSON object
         """
+        print("getting signup data")
         data = request.get_json()
+        print("building user")
         post_user = Users(**data)
+        print("saving user")
+        print(data)
+        print(post_user)
         post_user.save()
+        print("writing output")
         output = {'id': str(post_user.id)}
+        print("returning output")
         return jsonify({'result': output})
 
 
