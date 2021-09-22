@@ -13,9 +13,21 @@ from api.routes import create_routes
 # external packages
 import os
 
+#project resources
+from models.users import Users
+
 # default configuration
 default_config = {'JWT_SECRET_KEY': '${JWT_SECRET_KEY_VAR}'
                   }
+
+default_admin = {
+    'nym': '%s'%os.environ.get('ADMIN_NYM'),
+    'password': '%s'%os.environ.get('ADMIN_PASSWORD'),
+    'access':
+    {
+        'admin': 'True'
+    }
+}
 
 
 def get_flask_app(config: dict = None) -> app.Flask:
@@ -38,7 +50,7 @@ def get_flask_app(config: dict = None) -> app.Flask:
                                                 'retryWrites': False}
     if 'JWT_SECRET_KEY' in os.environ:
         flask_app.config['JWT_SECRET_KEY'] = os.environ['JWT_SECRET_KEY']
-
+        
     # init api and routes
     api = Api(app=flask_app)
     create_routes(api=api)
@@ -49,6 +61,15 @@ def get_flask_app(config: dict = None) -> app.Flask:
     # init jwt manager
     jwt = JWTManager(app=flask_app)
 
+    #create admin user
+    if Users.objects(nym="%s"%os.environ.get('ADMIN_NYM')).count() == 0:
+        print("creating admin user")
+        admin_user = Users(**default_admin)
+        admin_user.save()
+
+    for user in Users.objects():
+        print(user.nym, user.password, user.access.admin)
+    
     return flask_app
 
 

@@ -3,6 +3,7 @@ from flask_restful import Api
 
 # project resources
 from api.authentication import SignUpApi, LoginApi
+from api.user import UsersApi, UserApi
 from api.productionplan import ProductionPlanApi
 from api.service import ServicesApi, ServiceApi, ServiceFlowsApi, ServiceFlowApi, TrainsApi, TrainApi
 from api.connection import NodeConnectionsApi, NodeConnectionApi, ConflictsApi, ConflictApi
@@ -18,6 +19,9 @@ def create_routes(api: Api):
     """
     api.add_resource(SignUpApi, '/authentication/signup/')
     api.add_resource(LoginApi, '/authentication/login/')
+
+    api.add_resource(UsersApi, '/user/')
+    api.add_resource(UserApi, '/user/<user_id>')
 
     api.add_resource(ProductionPlanApi, '/productionplan')
     

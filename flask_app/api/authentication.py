@@ -10,6 +10,8 @@ from api.errors import unauthorized
 # external packages
 import datetime
 
+from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env.
 
 class SignUpApi(Resource):
     """
@@ -30,17 +32,11 @@ class SignUpApi(Resource):
         POST response method for creating user.
         :return: JSON object
         """
-        print("getting signup data")
         data = request.get_json()
-        print("building user")
         post_user = Users(**data)
-        print("saving user")
-        print(data)
-        print(post_user)
+        post_user.access.admin = False
         post_user.save()
-        print("writing output")
         output = {'id': str(post_user.id)}
-        print("returning output")
         return jsonify({'result': output})
 
 
@@ -64,7 +60,7 @@ class LoginApi(Resource):
         :return: JSON object
         """
         data = request.get_json()
-        user = Users.objects.get(email=data.get('email'))
+        user = Users.objects.get(nym=data.get('nym'))
         auth_success = user.check_pw_hash(data.get('password'))
         if not auth_success:
             return unauthorized()
@@ -74,4 +70,4 @@ class LoginApi(Resource):
             refresh_token = create_refresh_token(identity=str(user.id))
             return jsonify({'result': {'access_token': access_token,
                                        'refresh_token': refresh_token,
-                                       'logged_in_as': f"{user.email}"}})
+                                       'logged_in_as': f"{user.nym}"}})

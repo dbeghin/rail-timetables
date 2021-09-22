@@ -48,10 +48,9 @@ class Users(Document):
     .. seealso:: :class:`Access`, :class:`Phone`, :class:`models.meals.Meals`
     """
 
-    email = EmailField(required=True, unique=True)
+    nym = StringField(required=True, unique=False)
     password = StringField(required=True, min_length=6, regex=None)
     access = EmbeddedDocumentField(Access, default=Access(user=True, admin=False))
-    nym = StringField(unique=False)
 
     def generate_pw_hash(self):
         self.password = generate_password_hash(password=self.password).decode('utf-8')
