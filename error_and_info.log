@@ -9,3 +9,6 @@ INFO: 127.0.0.1 - - [29/Sep/2021 18:57:30] "[37mGET /connection/ HTTP/1.1[0m" 
 INFO: 127.0.0.1 - - [29/Sep/2021 18:57:39] "[37mOPTIONS /productionplan HTTP/1.1[0m" 200 -
 INFO: 127.0.0.1 - - [29/Sep/2021 18:57:55] "[37mOPTIONS /productionplan HTTP/1.1[0m" 200 -
 INFO: 127.0.0.1 - - [29/Sep/2021 18:58:03] "[37mOPTIONS /productionplan HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [29/Sep/2021 19:01:40] "[37mOPTIONS /productionplan HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [29/Sep/2021 19:41:07] "[37mOPTIONS /productionplan HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [29/Sep/2021 19:41:27] "[37mOPTIONS /productionplan HTTP/1.1[0m" 200 -

@@ -33,7 +33,7 @@ export class Payload {
     constructor() {
         this.load=0;
         this.fuels= new Fuels();
-        this.powerplants= [];
+        this.powerplants= [new Powerplant()];
      }
 }
 

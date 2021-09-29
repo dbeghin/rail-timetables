@@ -21,10 +21,61 @@
     </div>
   </div>
   <div>
+    <label>Power plant: </label>
+    <div>
+      <label>Name: </label>
+      <input [(ngModel)]="editPowerplant.name" />
+    </div>
+    <div>
+      <label>Type: </label>
+      <input [(ngModel)]="editPowerplant.type" />
+    </div>
+    <div>
+      <label>Efficiency: </label>
+      <input [(ngModel)]="editPowerplant.efficiency" />
+    </div>
+    <div>
+      <label>Minimum power (Pmin): </label>
+      <input [(ngModel)]="editPowerplant.pmin" />
+    </div>
+    <div>
+      <label>Maximum power (Pmax): </label>
+      <input [(ngModel)]="editPowerplant.pmax" />
+    </div>
+  </div>
+  <div>
+    <button (click)="addPowerplant()">Add power plant to list</button>
+  </div>
+  <div>
     <button (click)="getProductionPlan()">Get optimised production plan</button>
   </div>
 </div>
- 
+
+
+<h2>Added power plants</h2>
+<table class='table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Efficiency</th>
+        <th>Pmin</th>
+        <th>Pmax</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let powerplant of powerplants;">
+        <td>{{powerplant.name}}</td>
+        <td>{{powerplant.type}}</td>
+        <td>{{powerplant.efficiency}}</td>
+        <td>{{powerplant.pmin}}</td>
+        <td>{{powerplant.pmax}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<h2>Solution</h2>
 <table class='table'>
   <thead>
     <tr>
@@ -33,9 +84,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let powerplant of powerplants;">
-      <td>{{powerplant.name}}</td>
-      <td>{{powerplant.p}}</td>
+    <tr *ngFor="let powerplantsolution of powerplantsolutions;">
+      <td>{{powerplantsolution.name}}</td>
+      <td>{{powerplantsolution.p}}</td>
     </tr>
   </tbody>
 </table>
