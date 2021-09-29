@@ -1,0 +1,41 @@
+<h1>{{title}}</h1>
+ 
+<div>
+  <div>
+    <label>Load: </label>
+    <input [(ngModel)]="payload.load" />
+  </div>
+  <div>
+    <label>Fuels: </label>
+    <div>
+      <label>Gas (euro/MWh): </label>
+      <input [(ngModel)]="payload.fuels.gas" />
+    </div>
+    <div>
+      <label>Kerosine (euro/MWh): </label>
+      <input [(ngModel)]="payload.fuels.kerosine" />
+    </div>
+    <div>
+      <label>Wind (%): </label>
+      <input [(ngModel)]="payload.fuels.wind" />
+    </div>
+  </div>
+  <div>
+    <button (click)="getProductionPlan()">Get optimised production plan</button>
+  </div>
+</div>
+ 
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Power output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let powerplant of powerplants;">
+      <td>{{powerplant.name}}</td>
+      <td>{{powerplant.p}}</td>
+    </tr>
+  </tbody>
+</table>

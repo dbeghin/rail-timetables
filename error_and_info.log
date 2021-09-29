@@ -1,8 +1,11 @@
 WARNING:  * Debugger is active!
-INFO:  * Debugger PIN: 868-736-502
-INFO: 127.0.0.1 - - [21/Sep/2021 14:37:47] "[37mPOST /authentication/login/ HTTP/1.1[0m" 200 -
-INFO: 127.0.0.1 - - [21/Sep/2021 14:38:09] "[37mGET /user/ HTTP/1.1[0m" 200 -
-INFO: 127.0.0.1 - - [21/Sep/2021 14:40:20] "[37mPOST /authentication/signup/ HTTP/1.1[0m" 200 -
-INFO: 127.0.0.1 - - [21/Sep/2021 14:40:51] "[37mPOST /authentication/login/ HTTP/1.1[0m" 200 -
-INFO: 127.0.0.1 - - [21/Sep/2021 14:41:17] "[31m[1mGET /user/ HTTP/1.1[0m" 403 -
-INFO: 127.0.0.1 - - [21/Sep/2021 14:41:38] "[37mGET /user/ HTTP/1.1[0m" 200 -
+INFO:  * Debugger PIN: 187-768-108
+INFO: 127.0.0.1 - - [29/Sep/2021 18:50:17] "[37mGET /connection/ HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [29/Sep/2021 18:54:17] "[37mGET /connection/ HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [29/Sep/2021 18:54:29] "[37mGET /connection/ HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [29/Sep/2021 18:56:23] "[37mGET /connection/ HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [29/Sep/2021 18:56:56] "[37mGET /connection/ HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [29/Sep/2021 18:57:30] "[37mGET /connection/ HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [29/Sep/2021 18:57:39] "[37mOPTIONS /productionplan HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [29/Sep/2021 18:57:55] "[37mOPTIONS /productionplan HTTP/1.1[0m" 200 -
+INFO: 127.0.0.1 - - [29/Sep/2021 18:58:03] "[37mOPTIONS /productionplan HTTP/1.1[0m" 200 -

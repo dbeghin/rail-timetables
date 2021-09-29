@@ -10,10 +10,12 @@ from api.errors import forbidden
 
 
 class NodeConnectionsApi(Resource):
-    @jwt_required()
+    #@jwt_required()
     def get(self):
         output = NodeConnections.objects()
-        return jsonify({'result': output})
+        resp = jsonify(output)
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        return resp
 
 
     @jwt_required()

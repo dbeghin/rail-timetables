@@ -226,9 +226,9 @@ def optimiseCheckForErrors(data):
     wind_pc = 0
     try:
         load = float(data["load"])
-        gas_price = float(data["fuels"]["gas(euro/MWh)"])
-        kerosine_price = float(data["fuels"]["kerosine(euro/MWh)"])
-        wind_pc = float(data["fuels"]["wind(%)"])
+        gas_price = float(data["fuels"]["gas"])
+        kerosine_price = float(data["fuels"]["kerosine"])
+        wind_pc = float(data["fuels"]["wind"])
     except KeyError:
         error_output = "Key error in payload. At least one of the 'load' or 'fuel' keys is wrong. Check JSON file."
         logging.error(error_output)
@@ -316,9 +316,9 @@ def optimise(data_raw):
     #now we're assured data is in the proper format
     
     load = float(data["load"])
-    gas_price = float(data["fuels"]["gas(euro/MWh)"])
-    kerosine_price = float(data["fuels"]["kerosine(euro/MWh)"])
-    wind_pc = float(data["fuels"]["wind(%)"])
+    gas_price = float(data["fuels"]["gas"])
+    kerosine_price = float(data["fuels"]["kerosine"])
+    wind_pc = float(data["fuels"]["wind"])
         
 
     nPlants = len(data["powerplants"])

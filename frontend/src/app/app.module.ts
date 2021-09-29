@@ -1,18 +1,36 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms'
 
+import {AppComponent} from './app.component';
+import {UsersApiService} from './users/users-api.service';
+import { UsersComponent } from './users/users.component';
+import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { ConnectionComponent } from './connection/connection.component';
+import { ConnectionsApiService } from './connection/connections-api.service';
+import { ProductionplanComponent } from './productionplan/productionplan.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UsersComponent,
+    MessagesComponent,
+    ConnectionComponent,
+    ProductionplanComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    UsersApiService,
+    ConnectionsApiService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
