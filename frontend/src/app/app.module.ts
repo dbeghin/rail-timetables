@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ConnectionComponent } from './connection/connection.component';
 import { ConnectionsApiService } from './connection/connections-api.service';
 import { ProductionplanComponent } from './productionplan/productionplan.component';
+import { PowerplantDetailComponent } from './powerplant-detail/powerplant-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProductionplanComponent } from './productionplan/productionplan.compone
     UsersComponent,
     MessagesComponent,
     ConnectionComponent,
-    ProductionplanComponent
+    ProductionplanComponent,
+    PowerplantDetailComponent
   ],
   imports: [
     BrowserModule,

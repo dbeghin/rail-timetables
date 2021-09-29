@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductionPlanApiService } from './productionplan-api.service';
-import { Payload, Powerplant, PowerplantSolution } from './payload.model2';
+import { Payload, Powerplant, PowerplantSolution } from './payload.model';
 
 @Component({
   selector: 'app-productionplan',
   templateUrl: './productionplan.component.html',
   styleUrls: ['./productionplan.component.css']
 })
+
 export class ProductionplanComponent implements OnInit {
   title = 'Production plan from payload';
-  editPowerplant:Powerplant = new Powerplant();
+  selectedPowerplant?: Powerplant;
   powerplants:Powerplant[] = [];
   powerplantsolutions:PowerplantSolution[] = [];
   payload = new Payload();
@@ -19,11 +20,16 @@ export class ProductionplanComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSelect(powerplant: Powerplant): void {
+    this.selectedPowerplant = powerplant;
+  }
+
   addPowerplant() {
-    this.powerplants.push(this.editPowerplant)
+    this.powerplants.push(new Powerplant())
   }
 
   getProductionPlan() {
+    this.payload.powerplants = this.powerplants;
     this.productionPlanApiService.getProductionPlan(this.payload)
       .subscribe(powerplantsolutions => this.powerplantsolutions = powerplantsolutions);      
   }

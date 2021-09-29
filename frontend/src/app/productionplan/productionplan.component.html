@@ -20,29 +20,19 @@
       <input [(ngModel)]="payload.fuels.wind" />
     </div>
   </div>
-  <div>
-    <label>Power plant: </label>
-    <div>
-      <label>Name: </label>
-      <input [(ngModel)]="editPowerplant.name" />
-    </div>
-    <div>
-      <label>Type: </label>
-      <input [(ngModel)]="editPowerplant.type" />
-    </div>
-    <div>
-      <label>Efficiency: </label>
-      <input [(ngModel)]="editPowerplant.efficiency" />
-    </div>
-    <div>
-      <label>Minimum power (Pmin): </label>
-      <input [(ngModel)]="editPowerplant.pmin" />
-    </div>
-    <div>
-      <label>Maximum power (Pmax): </label>
-      <input [(ngModel)]="editPowerplant.pmax" />
-    </div>
-  </div>
+
+  <h2>Added power plants</h2>
+
+  <ul class="powerplants">
+    <li *ngFor="let powerplant of powerplants"
+      [class.selected]="powerplant === selectedPowerplant"
+      (click)="onSelect(powerplant)">
+      <span class="badge">{{powerplant.name}}</span> {{powerplant.name}}
+    </li>
+  </ul>
+
+  <app-powerplant-detail [powerplant]="selectedPowerplant"></app-powerplant-detail>
+
   <div>
     <button (click)="addPowerplant()">Add power plant to list</button>
   </div>

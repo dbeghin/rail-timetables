@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Payload, PowerplantSolution } from './payload.model2';
+import { Payload, PowerplantSolution } from './payload.model';
 import { Injectable } from '@angular/core';
 import {API_URL} from '../env';
 import { Observable, of } from 'rxjs';
