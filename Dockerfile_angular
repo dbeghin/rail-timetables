@@ -1,0 +1,19 @@
+FROM node:alpine
+RUN apk update && apk add --no-cache make git
+
+WORKDIR /frontend
+
+COPY frontend/package*.json /frontend/
+
+RUN npm i npm@latest -g && \
+    npm install -g @angular/cli
+
+RUN chown -R node /frontend
+
+WORKDIR /frontend
+
+USER node
+
+RUN npm install
+
+RUN ng serve
