@@ -232,24 +232,24 @@ def optimiseCheckForErrors(data):
     except KeyError:
         error_output = "Key error in payload. At least one of the 'load' or 'fuel' keys is wrong. Check JSON file."
         logging.error(error_output)
-        return {"msg:": error_output}
+        return {"msg": error_output, "powerplantsolutions":[]}
     except TypeError:
         error_output = "Type error in payload. Got list when expecting dictionary or vice-versa. Check JSON file."
         logging.error(error_output)
-        return {"msg:": error_output}
+        return {"msg": error_output, "powerplantsolutions":[]}
     except ValueError:
         error_output = "Value error in payload. Expecting floats in 'load' and 'fuel', but at least one of the values is not a float. Check JSON file."
         logging.error(error_output)
-        return {"msg:": error_output}
+        return {"msg": error_output, "powerplantsolutions":[]}
 
     if load < 0 or gas_price < 0 or kerosine_price < 0:
         error_output = "Negative load or fuel price. Values must be >=0. Check JSON."
         logging.error(error_output)
-        return {"msg:": error_output}
+        return {"msg": error_output, "powerplantsolutions":[]}
     if wind_pc < 0 or wind_pc > 100:
         error_output = "Wind percentage '%s' not valid. Value needs to be between 0 and 100. Check JSON."%wind_pc
         logging.error(error_output)
-        return {"msg:": error_output}
+        return {"msg": error_output, "powerplantsolutions":[]}
         
 
     nPlants = 0
@@ -258,11 +258,11 @@ def optimiseCheckForErrors(data):
     except KeyError:
         error_output = "Key error: can't find 'powerplants' entry. Check JSON file."
         logging.error(error_output)
-        return {"msg:": error_output}
+        return {"msg": error_output, "powerplantsolutions":[]}
     except TypeError:
         error_output = "Type error in payload. Got list when expecting dictionary or vice-versa. Check JSON file."
         logging.error(error_output)
-        return {"msg:": error_output}
+        return {"msg": error_output, "powerplantsolutions":[]}
     
         
     powerplants = []
@@ -278,29 +278,29 @@ def optimiseCheckForErrors(data):
         except KeyError:
             error_output = "Key error in powerplant number %s. Check JSON file." %iPlant
             logging.error(error_output)
-            return {"msg:": error_output}
+            return {"msg": error_output, "powerplantsolutions":[]}
         except TypeError:
             error_output = "Type error in payload. Got list when expecting dictionary or vice-versa. Check JSON file."
             logging.error(error_output)
-            return {"msg:": error_output}
+            return {"msg": error_output, "powerplantsolutions":[]}
         except ValueError:
             error_output = "Value error in powerplant number %s. Check JSON file." %iPlant
             logging.error(error_output)
-            return {"msg:": error_output}
+            return {"msg": error_output, "powerplantsolutions":[]}
         
         acceptable_types = ["gasfired", "turbojet", "windturbine"]
         if not tmp_powerplant.ttype in acceptable_types:
             error_output = "Type '%s' of power plant number %s not valid. Type needs to be one of %s. Check JSON file." %(tmp_powerplant.ttype, iPlant, acceptable_types)
             logging.error(error_output)
-            return {"msg:": error_output}
+            return {"msg": error_output, "powerplantsolutions":[]}
         if tmp_powerplant.efficiency <= 0 or tmp_powerplant.efficiency > 1:
             error_output = "Efficiency '%s' of power plant number %s not valid. Value needs to be: 0 < '%s' <= 1. Check JSON file." %(tmp_powerplant.efficiency, iPlant, tmp_powerplant.efficiency)
             logging.error(error_output)
-            return {"msg:": error_output}
+            return {"msg": error_output, "powerplantsolutions":[]}
         if tmp_powerplant.pmin < 0 or tmp_powerplant.pmax < 0 or tmp_powerplant.pmax < tmp_powerplant.pmin:
             error_output = "[pmin, pmax] = '[%s, %s]' of power plant number %s not valid. Both values need to be positive, and pmax >= pmin. Check JSON file." %(tmp_powerplant.pmin, tmp_powerplant.pmax, iPlant)
             logging.error(error_output)
-            return {"msg:": error_output}
+            return {"msg": error_output, "powerplantsolutions":[]}
 
     #if everything is fine just return the data
     return data
@@ -310,7 +310,7 @@ def optimiseCheckForErrors(data):
 def optimise(data_raw):
     #check input format and value ranges
     data = optimiseCheckForErrors(data_raw)
-    if "msg:" in data.keys():
+    if "msg" in data.keys():
         #return error message if any
         return data
     #now we're assured data is in the proper format
@@ -360,7 +360,7 @@ def optimise(data_raw):
     if not global_solution_flag:
         error_output = "Unable to distribute load. No solution found."
         logging.error(error_output)
-        return {"msg:": error_output}
+        return {"msg": error_output, "powerplantsolutions":[]}
 
     global_solution_byCostTier = []
     golden_path = tryGoldenPath(load, plants_byCostTier, power_ranges_byCostTier)
@@ -430,4 +430,4 @@ def optimise(data_raw):
                 }
             output_list.append(output_element.copy())
 
-    return output_list
+    return {"msg": "success", "powerplantsolutions":output_list}

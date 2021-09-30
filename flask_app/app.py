@@ -1,5 +1,6 @@
 # flask packages
 from flask import Flask, app
+from flask_cors import CORS
 from flask_restful import Api
 from flask_mongoengine import MongoEngine
 from flask_jwt_extended import JWTManager
@@ -44,6 +45,9 @@ def get_flask_app(config: dict = None) -> app.Flask:
     config = default_config if config is None else config
     flask_app.config.update(config)
 
+    #configure CORS
+    CORS(app=flask_app)
+
     # load config variables
     if 'MONGODB_URI' in os.environ:
         flask_app.config['MONGODB_SETTINGS'] = {'host': os.environ['MONGODB_URI'],
@@ -66,9 +70,6 @@ def get_flask_app(config: dict = None) -> app.Flask:
         print("creating admin user")
         admin_user = Users(**default_admin)
         admin_user.save()
-
-    for user in Users.objects():
-        print(user.nym, user.password, user.access.admin)
     
     return flask_app
 

@@ -21,7 +21,7 @@ class UsersApi(Resource):
     >>> api = Api(app=app)
     >>> api.add_resource(UsersApi, '/user/')
     """
-    #@jwt_required()
+    @jwt_required()
     def get(self) -> Response:
         """
         GET response method for acquiring all user data.
@@ -29,13 +29,12 @@ class UsersApi(Resource):
         Authorization is required: Access(admin=true)
         :return: JSON object
         """
-        authorized: bool = True
-        #authorized: bool = Users.objects.get(id=get_jwt_identity()).access.admin
+        
+        authorized: bool = Users.objects.get(id=get_jwt_identity()).access.admin
         
         if authorized:
             output = Users.objects()
             resp = jsonify(output)
-            resp.headers['Access-Control-Allow-Origin'] = '*'
             return resp
         else:
             return forbidden()

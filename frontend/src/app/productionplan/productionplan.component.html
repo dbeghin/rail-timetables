@@ -1,12 +1,52 @@
 <h1>{{title}}</h1>
- 
+
+<p>This is my solution to a coding challenge by Engie about finding the cheapest way
+   to distribute a power load across different power plants, given constraints.
+  Details can be found <a href="https://github.com/gem-spaas/powerplant-coding-challenge">here</a>.
+</p>
+
+<p>
+  Below, you can set the load in MW and the price of the fuels (gas, kerosine), as well as the amount
+  of wind available in percentage terms (0-100). Kerosine is typically more expensive than gas.
+</p>
+
+<p>
+  Below that, you can create new power plants and edit them. Give each of them a unique name, and set
+  their type: 'gasfired' plants run on gas, 'turbojet' ones run on kerosine, and 'windturbine' plants
+  use wind, which is free. No other types are allowed.
+</p>
+
+<p> 
+  Also set the efficiency of each plant (0-1), lower numbers mean more expensive operation. Efficiency for
+  wind turbines should always be 1.
+</p>
+
+<p>
+  Set the minimum and maximum powers at which each plant can operate. For wind turbines, the min power should
+  always be set to 0 for the code to work, but in practice the wind turbine is either on (with power = max power * wind %)
+  or completely turned off.
+</p>
+
+<p>
+  Click on the "Get optimised production plan" button at the bottom of the page to get the cheapest solution.
+</p>
+
+<p>
+  See how the solution changes as you change the inputs. The app should always return you the cheapest solution, no matter how convoluted the situation.
+  If no solution is possible, it will say so.
+  If there is an error in the input format (e.g. unsupported plant type, min power > max power) it will also say so.
+</p>
+
+<br>
+
 <div>
   <div>
-    <label>Load: </label>
+    <label>Load (MW): </label>
     <input [(ngModel)]="payload.load" />
   </div>
+  <br>
   <div>
-    <label>Fuels: </label>
+    <label><b>Fuels:</b> </label>
     <div>
       <label>Gas (euro/MWh): </label>
       <input [(ngModel)]="payload.fuels.gas" />
@@ -23,26 +63,29 @@
 
   <h2>Added power plants</h2>
 
+  <div>
+    <button (click)="addPowerplant()">Create new power plant with default values</button>
+  </div>
+
+  <p><b>Click on existing power plant to change it</b></p>
+
   <ul class="powerplants">
     <li *ngFor="let powerplant of powerplants"
       [class.selected]="powerplant === selectedPowerplant"
       (click)="onSelect(powerplant)">
-      <span class="badge">{{powerplant.name}}</span> {{powerplant.name}}
+      <span class="badge">{{powerplant.type}}</span> {{powerplant.name}}
     </li>
   </ul>
 
-  <app-powerplant-detail [powerplant]="selectedPowerplant"></app-powerplant-detail>
 
-  <div>
-    <button (click)="addPowerplant()">Add power plant to list</button>
-  </div>
-  <div>
-    <button (click)="getProductionPlan()">Get optimised production plan</button>
-  </div>
+  <app-powerplant-detail [powerplant]="selectedPowerplant"></app-powerplant-detail>
+  <button *ngIf="selectedPowerplant" (click)="savePowerplant()">save selected power plant</button>
+
+  
 </div>
 
 
-<h2>Added power plants</h2>
+<h2>Power plants summary</h2>
 <table class='table'>
     <thead>
       <tr>
@@ -66,6 +109,15 @@
 
 
 <h2>Solution</h2>
+
+<div>
+    <button (click)="getProductionPlan()">Get optimised production plan</button>
+</div>
+
+<div *ngIf="optimiseroutput">
+<p>{{optimiseroutput.msg}}</p>
+
+<br>
 <table class='table'>
   <thead>
     <tr>
@@ -74,9 +126,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let powerplantsolution of powerplantsolutions;">
+    <tr *ngFor="let powerplantsolution of optimiseroutput.powerplantsolutions;">
       <td>{{powerplantsolution.name}}</td>
       <td>{{powerplantsolution.p}}</td>
     </tr>
   </tbody>
 </table>
+</div>

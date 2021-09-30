@@ -87,10 +87,13 @@ class ProductionPlanApi(Resource):
         if data == None:
             error_message = "Unable to parse JSON. Check content of JSON file and/or the CURL command used."
             logging.error(error_message)
-            return jsonify({'error': error_message})
+            output = {'msg': error_message, "powerplantsolutions":[]}
+            resp = jsonify(output)
+            return resp
 
         output = optimise(data)
-        return jsonify(output)
+        resp = jsonify(output)
+        return resp
 
     
     #def delete(self, user_id: str) -> Response:

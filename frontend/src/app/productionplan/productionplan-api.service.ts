@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Payload, PowerplantSolution } from './payload.model';
+import { Payload, OptimiserOutput } from './payload.model';
 import { Injectable } from '@angular/core';
 import {API_URL} from '../env';
 import { Observable, of } from 'rxjs';
@@ -20,13 +20,17 @@ export class ProductionPlanApiService {
     this.messageService.add(`ProductionPlanApiService: ${message}`);
   }
 
-  getProductionPlan(payload:Payload): Observable<PowerplantSolution[]> {
-    const headers = { 'content-type': 'application/json'}  
+  getProductionPlan(payload:Payload): Observable<OptimiserOutput> {
+    const headers = { 
+        'content-type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+    };  
     const body=JSON.stringify(payload);
-    console.log(body)
-    return this.http.post<PowerplantSolution[]>(this.productionplanUrl, body,{'headers':headers}).pipe(
+    console.log(body);
+    this.log(body);
+    return this.http.post<OptimiserOutput>(this.productionplanUrl, body,{'headers':headers}).pipe(
         tap(_ => this.log('obtained production plan')),
-        catchError(this.handleError<PowerplantSolution[]>('getProductionPlan', []))
+        catchError(this.handleError<OptimiserOutput>('getProductionPlan'))
       )
   }
 
