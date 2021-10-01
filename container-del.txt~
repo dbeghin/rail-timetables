@@ -1,0 +1,24 @@
+CONTAINER ID   IMAGE                       COMMAND                  CREATED             STATUS                           PORTS     NAMES
+a8e5f9495324   rail-timetables-deploy_ng   "/docker-entrypoint.…"   48 minutes ago      Exited (0) About a minute ago              ng
+cbb780e14b21   d2c18d8bd8f8                "/bin/sh -c 'ls fron…"   55 minutes ago      Exited (1) 55 minutes ago                  sweet_nash
+3bef3cc8b134   21ddf422dd80                "/bin/sh -c 'ls fron…"   About an hour ago   Exited (1) About an hour ago               laughing_nash
+17afce8fb539   d21585c19c5b                "/bin/sh -c 'ls dist…"   About an hour ago   Exited (1) About an hour ago               epic_joliot
+42174f00cfbb   6df69c8793cf                "/bin/sh -c 'npm run…"   About an hour ago   Exited (254) About an hour ago             nifty_yonath
+a113a7628369   9a60271bafd2                "/bin/sh -c 'ls home'"   About an hour ago   Exited (1) About an hour ago               heuristic_mclean
+81f265d8fa1d   75a86818a4c9                "/bin/sh -c 'ls home'"   About an hour ago   Exited (1) About an hour ago               wizardly_black
+372c275b8c67   1f633cdb93ee                "/bin/sh -c 'ls fron…"   About an hour ago   Exited (1) About an hour ago               sad_galileo
+ee07a8529d98   1fcd06c6e069                "/bin/sh -c 'ls fron…"   About an hour ago   Exited (2) About an hour ago               gallant_satoshi
+10927956a670   98c0273694aa                "/bin/sh -c 'ls fron…"   About an hour ago   Exited (2) About an hour ago               beautiful_lamarr
+c18d31ee1bcc   facd824faac9                "/bin/sh -c 'ls fron…"   2 hours ago         Exited (2) 2 hours ago                     upbeat_curie
+f9734ec3432e   a8f539ca910f                "/bin/sh -c 'ls fron…"   2 hours ago         Exited (2) 2 hours ago                     vigilant_mayer
+89cd3a8212e5   623b4f2cb023                "/bin/sh -c 'npm ins…"   2 hours ago         Exited (254) 2 hours ago                   distracted_easley
+823cef751a3e   e1fa1f2c87cd                "/bin/sh -c 'ls dist…"   2 hours ago         Exited (2) 2 hours ago                     hungry_thompson
+bb82ee09c363   e0dd69e9600d                "/bin/sh -c 'ls fron…"   2 hours ago         Exited (2) 2 hours ago                     confident_mccarthy
+bd696f9d215d   356869e9ba48                "/bin/sh -c 'npm run…"   3 hours ago         Exited (127) 3 hours ago                   clever_burnell
+0c4a425e78c6   49b5bea98fdd                "/bin/sh -c 'npm run…"   3 hours ago         Exited (127) 3 hours ago                   adoring_sanderson
+682908ef5474   ca56bbf53bfb                "/bin/sh -c 'npm run…"   3 hours ago         Exited (127) 3 hours ago                   ecstatic_antonelli
+b2fb82819c12   e9b40e8103b5                "/bin/sh -c 'npm run…"   3 hours ago         Exited (3) 3 hours ago                     vibrant_ardinghelli
+ec3349d74a3a   9196486c20ac                "/bin/sh -c 'ng serv…"   22 hours ago        Exited (1) 22 hours ago                    elastic_feistel
+8e3d177af97a   949df310b922                "/bin/sh -c 'ng serv…"   22 hours ago        Exited (1) 22 hours ago                    youthful_mestorf
+4c648217febc   2fcf33794940                "/bin/sh -c 'ng serv…"   23 hours ago        Exited (1) 23 hours ago                    competent_antonelli
+c2efaa979cf9   hello-world                 "/hello"                 2 weeks ago         Exited (0) 2 weeks ago                     gracious_poincare
