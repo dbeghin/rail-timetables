@@ -7,11 +7,14 @@ RUN apk update && apk add --no-cache make git
 RUN mkdir /app
 WORKDIR /app
 
-# Copy app files.
-COPY $PWD/frontend/ /app/frontend
+# Copy dependencies.
+COPY $PWD/frontend/package.json $PWD/frontend/package-lock.json /app/frontend/
 
 # Install app dependencies.
 RUN npm install --prefix frontend
+
+#Copy app files.
+COPY $PWD/frontend/ /app/frontend
 
 # Build app
 RUN npm run build --prefix frontend -- --output-path=/app/frontend/dist/out
