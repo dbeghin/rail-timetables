@@ -1,6 +1,7 @@
 ### Stage 1: build ###
 
 FROM node:12-alpine as builder
+RUN apk update && apk add --no-cache make git
 
 # Set working directory.
 RUN mkdir /app
@@ -8,16 +9,12 @@ WORKDIR /app
 
 # Copy app files.
 COPY $PWD/frontend/ /app/frontend
-RUN ls frontend
 
 # Install app dependencies.
 RUN npm install --prefix frontend
 
 # Build app
 RUN npm run build --prefix frontend -- --output-path=/app/frontend/dist/out
-RUN ls frontend
-RUN ls frontend/dist
-RUN ls frontend/dist/out
 
 ### Stage 2: delivery ###
 
